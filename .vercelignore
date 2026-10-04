@@ -1,0 +1,8 @@
+node_modules
+data
+uploads
+public/vendor
+.env
+.env.*
+!.env.example
+.admin-password.txt
