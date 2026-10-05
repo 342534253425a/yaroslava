@@ -59,7 +59,6 @@ const thread = (cls = '') => `
 /* ---------- home ---------- */
 
 export function home({ settings, featured, lessons, counts }) {
-  const heroImg = settings.heroImage || placeholder('rose', '#7A1323');
   const routes = [
     ['01', '/shop', 'Готовые изделия', 'Вещи, которые уже связаны и ждут своего человека. Каждая — в единственном экземпляре.', `${counts.available} ${plural(counts.available, ['вещь', 'вещи', 'вещей'])} в наличии`, placeholder('sweater', '#E8DDD0'), 'Выбрать вещь'],
     ['02', '/lessons', 'Видео-уроки', 'Мастер-классы для вязальщиц: от первого мотива ирландского кружева до готового свитера.', `${counts.lessons} ${plural(counts.lessons, ['урок', 'урока', 'уроков'])}`, placeholder('rose', '#3B0710'), 'Смотреть уроки'],
@@ -74,29 +73,14 @@ export function home({ settings, featured, lessons, counts }) {
   ];
   const body = `
 <section class="hero">
-  <div class="hero__text">
-    <p class="eyebrow" data-fade>Авторский трикотаж и кружево ручной работы</p>
-    <h1 class="hero__title" data-title>Искусство<br>в&nbsp;каждой <em>петле</em></h1>
-    <p class="hero__lead" data-fade>Меня зовут Ярослава. Я вяжу спицами и крючком, плету ирландское кружево и создаю вещи, у которых есть душа и история.</p>
-    <div class="hero__actions" data-fade>
-      <a class="btn" href="/shop">Готовые изделия ${icon.arrow}</a>
-      <a class="btn btn--ghost" href="/lessons">Видео-уроки</a>
-      <a class="link-arrow" href="/order">Заказать свою вещь ${icon.arrow}</a>
-    </div>
-    <ul class="hero__facts" data-fade>
-      <li><b>${esc(settings.city || 'Москва')}</b><span>мастерская</span></li>
-      <li><b>${counts.available}</b><span>${plural(counts.available, ['вещь', 'вещи', 'вещей'])} в наличии</span></li>
-      <li><b>${counts.lessons}</b><span>${plural(counts.lessons, ['урок', 'урока', 'уроков'])}</span></li>
-    </ul>
-  </div>
   <div class="hero__media">
-    <div class="hero__img parallax" data-hero-img style="--bg:#7A1323"><img data-speed="auto" src="${esc(heroImg)}" alt="Ярослава — мастер ручного вязания"><p class="hero__cap">Ирландская роза · крючок</p></div>
-    <div class="hero__badge" aria-hidden="true">
-      <svg viewBox="0 0 200 200"><defs><path id="circle" d="M100 100 m-78 0 a78 78 0 1 1 156 0 a78 78 0 1 1 -156 0"/></defs><text><textPath href="#circle">ручная работа ✦ ирландское кружево ✦ натуральная пряжа ✦</textPath></text></svg>
-      <span>Я</span>
-    </div>
+    <div class="hero__img" data-hero-img><img src="/images/hero-yarn.png" alt=""></div>
   </div>
-  ${thread('thread--hero')}
+  <div class="hero__text">
+    <p class="hero__kicker" data-fade>Мастерская</p>
+    <h1 class="hero__title" data-title>Ярослава</h1>
+    <p class="hero__lead" data-fade>Вяжу больше чем вещи.<br>Мои изделия — это обереги.</p>
+  </div>
 </section>
 
 <section class="intro">

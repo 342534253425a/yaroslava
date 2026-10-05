@@ -1102,6 +1102,8 @@ html.reduce [data-reveal], html.reduce [data-fade] { opacity: 1; }
   .pill { height: 50px; padding: 0 8px; }
   .hero, .custom, .lesson-hero, .about-hero, .product, .lesson-body, .checkout, .wizard, .text-block, .story__row, .info__row { grid-template-columns: 1fr; }
   .hero { min-height: auto; padding-top: 30px; }
+  .page-home .hero { min-height: 100svh; padding-top: 0; }
+  .page-home .hero__badge { display: none; }
   .hero__actions .link-arrow { flex-basis: 100%; }
   .hero__media { width: auto; margin: 0; }
   .hero__img { height: auto; width: 100%; }
@@ -1200,8 +1202,85 @@ html { -webkit-tap-highlight-color: transparent; }
     radial-gradient(900px 420px at 100% -10%, rgba(122, 19, 35, 0.06), transparent 60%),
     radial-gradient(700px 380px at -10% 30%, rgba(158, 42, 58, 0.05), transparent 55%);
 }
-.page-home .hero { align-items: end; padding-bottom: 110px; }
-.page-home .thread--hero { bottom: -30px; }
+.page-home .main { padding-top: 0; }
+.page-home .hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  justify-items: start;
+  min-height: 100svh;
+  padding: 0;
+  overflow: hidden;
+  color: #f6f1e8;
+}
+.page-home .hero__media {
+  position: absolute;
+  inset: 0;
+  width: auto;
+  margin: 0;
+}
+.page-home .hero__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: #64101c;
+}
+.page-home .hero__img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(100deg, rgba(92, 12, 24, 0.78) 0%, rgba(138, 28, 40, 0.62) 28%, rgba(120, 36, 44, 0.34) 52%, rgba(48, 22, 26, 0.12) 74%, rgba(20, 16, 16, 0.04) 100%);
+  pointer-events: none;
+}
+.page-home .hero__title,
+.page-home .hero__lead,
+.page-home .hero__kicker { text-shadow: 0 10px 36px rgba(46, 5, 12, 0.35); }
+.page-home .hero__img img {
+  z-index: 0;
+  top: -8%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  border-radius: 0;
+}
+.page-home .hero__text {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  justify-items: start;
+  text-align: left;
+  width: min(920px, 100%);
+  margin-right: auto;
+  padding: calc(var(--header-h) + 4vh) var(--pad) 8vh;
+}
+.page-home .hero__kicker {
+  margin: 0 0 10px;
+  font: 500 clamp(18px, 1.5vw, 24px)/1.2 var(--serif);
+  letter-spacing: 0.04em;
+  color: #f6f1e8;
+}
+.page-home .hero__title {
+  color: #f4efe6;
+  font-size: clamp(72px, 12vw, 168px);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+.page-home .hero__lead {
+  max-width: 14em;
+  margin: 22px 0 0;
+  font: 400 clamp(22px, 2.1vw, 32px)/1.35 var(--serif);
+  color: #f6f1e8;
+}
+.page-home .site-header:not(.is-scrolled):not(.menu-open) .logo,
+.page-home .site-header:not(.is-scrolled):not(.menu-open) .logo__mark { color: var(--cream); }
+.page-home .site-header:not(.is-scrolled):not(.menu-open) .logo__mark { background: transparent; }
 .hero__facts {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1214,21 +1293,6 @@ html { -webkit-tap-highlight-color: transparent; }
 }
 .hero__facts b { display: block; font: 500 28px/1 var(--serif); color: var(--wine); }
 .hero__facts span { display: block; margin-top: 6px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
-.page-home .hero__img {
-  padding: 18px 18px 58px;
-  background:
-    radial-gradient(90% 70% at 0% 0%, rgba(255, 255, 255, 0.16), transparent 46%),
-    repeating-linear-gradient(-45deg, rgba(243, 236, 228, 0.09) 0 1px, transparent 1px 12px),
-    #64101c;
-  box-shadow: 0 36px 70px -34px rgba(46, 5, 12, 0.72);
-}
-.page-home .hero__img img {
-  top: 18px;
-  left: 18px;
-  width: calc(100% - 36px);
-  height: calc(100% - 76px);
-  border-radius: 2px;
-}
 .hero__cap {
   position: absolute;
   left: 22px;
@@ -1306,4 +1370,22 @@ html { -webkit-tap-highlight-color: transparent; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* yarn photo fills the hero; inset crop hides the source frame */
+.page-home .hero__img {
+  padding: 0;
+  border-radius: 0;
+  background: #6e6864;
+  box-shadow: none;
+}
+.page-home .hero__img img {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  object-fit: cover;
 }
